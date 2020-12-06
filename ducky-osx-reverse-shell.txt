@@ -9,7 +9,7 @@ REM
 REM usb setup
 REM you'll need to update the firmware to ducky2.1 (for VIDPID spoofing)
 REM https://github.com/hak5darren/USB-Rubber-Ducky/blob/master/Firmware/Images/duck_v2.1.hex
-REM sudo sudo dfu-programmer at32uc3b1256 erase; sudo dfu-programmer at32uc3b1256 flash --suppress-bootloader-mem duck_v2.1.hex; sudo dfu-programmer at32uc3b1256 reset
+REM sudo dfu-programmer at32uc3b1256 erase; sudo dfu-programmer at32uc3b1256 flash --suppress-bootloader-mem duck_v2.1.hex; sudo dfu-programmer at32uc3b1256 reset
 REM subvert apple's Keyboard Setup Assistant; create a vidpid.bin to spoof an Apple Keyboard 
 REM https://github.com/midnitesnake/USB-Rubber-Ducky/wiki/Keyboard_VID_PID_List
 REM https://github.com/hak5darren/USB-Rubber-Ducky/tree/master/Firmware/Utils/VID_PID_SWAPPER_1.1
